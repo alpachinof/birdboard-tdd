@@ -18,4 +18,9 @@ class Project extends Model
     {
         return "/projects/{$this->id}";
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
