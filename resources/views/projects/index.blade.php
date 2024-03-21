@@ -1,19 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+    <div class="flex m-8">
 
-<body>
-    <ul>
         @foreach ($projects as $project)
-            <a href="{{ $project->path() }}">{{ $project->title }}</a>
-        @endforeach
-    </ul>
-</body>
+            <div class="bg-white dark:bg-gray-800  mr-4 p-5 rounded shadow w-1/3 h-[200px]">
+                <h3 class="dark:text-white font-normal text-xl mb-6">{{ $project->title }}</h3>
 
-</html>
+                <div class="dark:text-gray-400">{{ $project->description }}</div>
+            </div>
+        @endforeach
+    </div>
+
+
+
+</x-app-layout>

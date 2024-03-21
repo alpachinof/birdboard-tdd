@@ -9,8 +9,13 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::get();
+        $projects = auth()->user()->projects()->get();
         return view('projects.index', compact('projects'));
+    }
+
+    public function create()
+    {
+        return view('projects.create');
     }
     public function store(Request $request)
     {
@@ -22,6 +27,9 @@ class ProjectController extends Controller
     }
     public function show(Project $project)
     {
+        if (auth()->user()->isNot($project->owner)) {
+            abort(403);
+        }
         return view('projects.show', compact('project'));
     }
 }
