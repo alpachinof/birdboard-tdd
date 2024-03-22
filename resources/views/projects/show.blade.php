@@ -1,18 +1,50 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+    {{-- <x-slot name="header">
+        <div class="flex justify-between items-end w-full">
+            <p class="text-gray text-sm font-normal dark:text-white">
+                <a href="/dashboard" class="text-gray text-sm font-normal no_underline dark:text-white">
+                    My projects
+                </a>
+                / {{ $project->title }}
+            </p>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h1>{{ $project->title }}</h1>
-                    <p> {{ $project->description }} </p>
-                </div>
+            <a href="/projects/create" class="button dark:text-white">New Project</a>
+        </div>
+    </x-slot> --}}
+
+    <header class="flex items-center mb-3 py-4">
+        <div class="flex justify-between items-end w-full">
+            <p class="text-gray text-sm font-normal dark:text-white">
+                <a href="/dashboard" class="text-gray text-sm font-normal no_underline dark:text-white">
+                    My projects
+                </a>
+                / {{ $project->title }}
+            </p>
+
+            <a href="/projects/create" class="button dark:text-white">New Project</a>
+        </div>
+    </header>
+
+    <div class="lg:flex -mx-3 dark:text-white">
+        <div class="lg:w-3/4 px-3 mb-6">
+            <div class="mb-8">
+                <h2 class="text-lg text-gray font-normal mb-3">Tasks</h2>
+
+                <div class="card mb-3">dsadasd</div>
+            </div>
+
+            <div class="">
+                <h2 class="text-lg text-gray font-normal mb-3">General Notes</h2>
+
+                <div class="card">Lorem ipsum</div>
             </div>
         </div>
+
+
+        <div class="lg:w-1/4 px-3">
+            @include('projects.card')
+        </div>
     </div>
+
+
 </x-app-layout>
