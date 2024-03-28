@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .card {
-    @apply bg-white p-5 rounded-lg shadow;
+    @apply bg-white p-5 rounded-lg shadow dark:bg-gray-800 dark:text-white;
 }

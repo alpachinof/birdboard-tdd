@@ -21,9 +21,9 @@ class ProjectController extends Controller
     {
         $data = $request->validate(['title' => 'required', 'description' => 'required']);
 
-        auth()->user()->projects()->create($data);
+        $project = auth()->user()->projects()->create($data);
 
-        return redirect('/projects');
+        return redirect($project->path());
     }
     public function show(Project $project)
     {

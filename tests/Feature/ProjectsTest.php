@@ -11,18 +11,19 @@ use Tests\TestCase;
 class ProjectsTest extends TestCase
 {
     use RefreshDatabase;
+
     /** @test */
     public function a_user_can_create_a_project(): void
     {
-
-        $this->actingAs(User::factory()->create());
+        $this->withoutExceptionHandling();
+        $this->signIn();
 
         $attributes = [
             'title' => 'something',
             'description' => 'smth else'
         ];
 
-        $this->post('/projects', $attributes)->assertRedirect('/projects');
+        $this->post('/projects', $attributes)->assertRedirect();
 
 
         $this->assertDatabaseHas('projects', $attributes);
@@ -32,7 +33,7 @@ class ProjectsTest extends TestCase
     /** @test */
     public function a_user_can_view_their_project()
     {
-        $this->actingAs(User::factory()->create());
+        $this->signIn();
 
         $project = Project::factory()->create(['owner_id' => auth()->user()->id]);
 
@@ -44,7 +45,7 @@ class ProjectsTest extends TestCase
     /** @test */
     public function an_authenticated_user_cannot_view_the_projects_of_others()
     {
-        $this->actingAs(User::factory()->create());
+        $this->signIn();
 
         $project = Project::factory()->create();
 
@@ -53,14 +54,14 @@ class ProjectsTest extends TestCase
     /** @test */
     public function a_project_requires_a_title()
     {
-        $this->actingAs(User::factory()->create());
+        $this->signIn();
 
         $this->post('/projects', [])->assertSessionHasErrors('title');
     }
     /** @test */
     public function a_project_requires_a_description()
     {
-        $this->actingAs(User::factory()->create());
+        $this->signIn();
 
         $this->post('/projects', [])->assertSessionHasErrors('description');
     }
@@ -70,7 +71,7 @@ class ProjectsTest extends TestCase
         $project = Project::factory()->create();
 
         $this->post('/projects', [$project->toArray()])->assertRedirect('login');
-        $this->get('/projects')->assertRedirect('login');
+        $this->get('/projects')->assertRedirect('/login');
         $this->get('/projects/create')->assertRedirect('login');
         $this->get($project->path())->assertRedirect('login');
     }
