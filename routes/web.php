@@ -25,11 +25,13 @@ Route::middleware('auth')->prefix('projects')->group(function () {
     Route::get('/', [ProjectController::class, 'index'])->name('dashboard');
     Route::get('/create', [ProjectController::class, 'create']);
     Route::get('/{project}', [ProjectController::class, 'show']);
+    Route::patch('/{project}', [ProjectController::class, 'update']);
     Route::post('/', [ProjectController::class, 'store']);
 
 
     Route::prefix('/{project}/tasks')->group(function () {
         Route::post('/', [ProjectTasksController::class, 'store']);
+        Route::patch('/{task}', [ProjectTasksController::class, 'update']);
     });
 });
 

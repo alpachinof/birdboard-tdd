@@ -11,7 +11,8 @@ class Project extends Model
 
     protected $fillable = [
         'title',
-        'description'
+        'description',
+        'notes'
     ];
 
     public function path()

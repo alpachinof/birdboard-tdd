@@ -31,7 +31,20 @@
                 <h2 class="text-lg text-gray font-normal mb-3">Tasks</h2>
 
                 @foreach ($project->tasks as $task)
-                    <div class="card mb-3">{{ $task->body }}</div>
+                    <div class="card mb-3">
+                        <form method="post" action="{{ $task->path() }}">
+                            @method('patch')
+                            @csrf
+
+                            <div class="flex">
+                                <input class="w-full {{ $task->completed ? 'text-gray-400' : '' }}" name="body"
+                                    value="{{ $task->body }}">
+                                <input name="completed" type="checkbox" onchange="this.form.submit()"
+                                    {{ $task->completed ? 'checked' : '' }}>
+                            </div>
+                        </form>
+
+                    </div>
                 @endforeach
 
                 <div class="card mb-3">
@@ -45,7 +58,12 @@
             <div class="">
                 <h2 class="text-lg text-gray font-normal mb-3">General Notes</h2>
 
-                <div class="card">Lorem ipsum</div>
+                <form method="post" action="{{ $project->path() }}">
+                    @method('patch')
+                    @csrf
+                    <textarea name="notes" class="card w-full mb-4" style="min-height: 200px">{{ $project->notes }}</textarea>
+                    <button type="submit" class="button">save</button>
+                </form>
             </div>
         </div>
 
