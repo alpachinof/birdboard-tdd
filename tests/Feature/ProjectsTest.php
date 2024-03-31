@@ -40,13 +40,31 @@ class ProjectsTest extends TestCase
 
         $project = Project::factory()->create(['owner_id' => auth()->user()->id]);
 
-        $this->patch($project->path(), [
-            'notes' => 'changed'
+        $this->patch($project->path(), $attributes = [
+            'notes' => 'changed',
+            'description' => 'something',
+            'title' => 'changed'
         ])->assertRedirect($project->path());
 
-        $this->assertDatabaseHas('projects', [
-            'notes' => 'changed'
-        ]);
+        $this->get($project->path() . '/edit')->assertOk();
+
+        $this->assertDatabaseHas('projects', $attributes);
+    }
+
+    /** @test */
+    public function a_user_can_update_a_project_general_notes()
+    {
+        $this->signIn();
+
+        $project = Project::factory()->create(['owner_id' => auth()->user()->id]);
+
+        $this->patch($project->path(), $attributes = [
+            'notes' => 'changed',
+        ])->assertRedirect($project->path());
+
+        $this->get($project->path() . '/edit')->assertOk();
+
+        $this->assertDatabaseHas('projects', $attributes);
     }
     /** @test */
     public function a_user_can_view_their_project()

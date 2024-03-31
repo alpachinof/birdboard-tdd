@@ -36,13 +36,23 @@ class ProjectController extends Controller
 
         return view('projects.show', compact('project'));
     }
-    public function update(Project $project)
+
+    public function edit(Project $project)
     {
+        return view('projects.edit', compact('project'));
+    }
+    public function update(Project $project, Request $request)
+    {
+
         Gate::authorize('update', $project);
 
-        $project->update([
-            'notes' => request('notes')
+        $data = $request->validate([
+            'title' => 'sometimes|required',
+            'description' => 'sometimes|required',
+            'notes' => 'nullable'
         ]);
+
+        $project->update($data);
 
         return redirect($project->path());
     }
