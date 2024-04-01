@@ -24,10 +24,11 @@ class ProjectTasksController extends Controller
     {
         Gate::authorize('update', $project);
 
-        $task->update([
-            'body' => $request->body,
-            'completed' => $request->has('completed')
-        ]);
+        $task->update($request->validate(['body' => 'required']));
+
+        $method = $request->completed ? 'complete' : 'incomplete';
+
+        $task->$method();
 
         return redirect($project->path());
     }
