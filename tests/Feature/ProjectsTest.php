@@ -15,7 +15,6 @@ class ProjectsTest extends TestCase
     /** @test */
     public function a_user_can_create_a_project(): void
     {
-        $this->withoutExceptionHandling();
         $this->signIn();
 
         $attributes = [
@@ -32,6 +31,42 @@ class ProjectsTest extends TestCase
         $this->get('/projects')
             ->assertSee($attributes['title'])
             ->assertSee($attributes['description']);
+    }
+
+    /** @test */
+    public function a_user_can_see_all_projects_they_have_been_invited_to_on_their_dashboard()
+    {
+        $user = User::factory()->create();
+
+        $this->signIn($user);
+
+        $project = Project::factory()->create();
+
+        $project->invite($user);
+
+        $this->get('/projects')->assertSee($project->title);
+    }
+    /** @test */
+    public function unauthorized_cannot_delete_projects(): void
+    {
+        $project = Project::factory()->create();
+
+        $this->delete($project->path())->assertRedirect('/login');
+
+        $this->signIn();
+
+        $this->delete($project->path())->assertStatus(403);
+    }
+    /** @test */
+    public function a_user_can_delete_a_project(): void
+    {
+        $this->signIn();
+
+        $project = Project::factory()->create(['owner_id' => auth()->user()->id]);
+
+        $this->delete($project->path())->assertRedirect('/projects');
+
+        $this->assertDatabaseMissing('projects', [$project->only('id')]);
     }
     /** @test */
     public function a_user_can_update_a_project()

@@ -1,17 +1,4 @@
 <x-app-layout>
-    {{-- <x-slot name="header">
-        <div class="flex justify-between items-end w-full">
-            <p class="text-gray text-sm font-normal dark:text-white">
-                <a href="/dashboard" class="text-gray text-sm font-normal no_underline dark:text-white">
-                    My projects
-                </a>
-                / {{ $project->title }}
-            </p>
-
-            <a href="/projects/create" class="button dark:text-white">New Project</a>
-        </div>
-    </x-slot> --}}
-
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between items-end w-full">
             <p class="text-gray text-sm font-normal dark:text-white">
@@ -21,7 +8,16 @@
                 / {{ $project->title }}
             </p>
 
-            <a href="{{ $project->path() . '/edit' }}" class="button dark:text-white">Edit Project</a>
+            <div class="flex items-center">
+                @foreach ($project->members as $member)
+                    <img src="sdad" alt="" class="rounded-full w-8 mr-2">
+                @endforeach
+                <img src="https://fastly.picsum.photos/id/218/200/200.jpg?hmac=pIx-HTJBJRheNaHmhgqsQRX8JbTGvag_zic9NTNWFJU"
+                    alt="" class="rounded-full w-8 mr-2">
+
+                <a href="{{ $project->path() . '/edit' }}" class="button ml-4 dark:text-white">Edit Project</a>
+
+            </div>
         </div>
     </header>
 

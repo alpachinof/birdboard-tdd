@@ -10,7 +10,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = auth()->user()->projects()->latest('updated_at')->get();
+        $projects = auth()->user()->accessibleProjects();
         return view('projects.index', compact('projects'));
     }
 
@@ -55,5 +55,14 @@ class ProjectController extends Controller
         $project->update($data);
 
         return redirect($project->path());
+    }
+
+    public function destroy(Project $project)
+    {
+        Gate::authorize('update', $project);
+
+        $project->delete();
+
+        return redirect('/projects');
     }
 }

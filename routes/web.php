@@ -28,6 +28,7 @@ Route::middleware('auth')->prefix('projects')->group(function () {
     Route::get('/{project}/edit', [ProjectController::class, 'edit']);
     Route::patch('/{project}', [ProjectController::class, 'update']);
     Route::post('/', [ProjectController::class, 'store']);
+    Route::delete('/{project}', [ProjectController::class, 'destroy']);
 
 
     Route::prefix('/{project}/tasks')->group(function () {
