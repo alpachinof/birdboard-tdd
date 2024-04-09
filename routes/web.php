@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectInvitationController;
 use App\Http\Controllers\ProjectTasksController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,8 @@ Route::middleware('auth')->prefix('projects')->group(function () {
         Route::post('/', [ProjectTasksController::class, 'store']);
         Route::patch('/{task}', [ProjectTasksController::class, 'update']);
     });
+
+    Route::post('/{project}/invitations', [ProjectInvitationController::class, 'store']);
 });
 
 require __DIR__ . '/auth.php';
