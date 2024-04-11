@@ -14,6 +14,8 @@
         @endforeach
     </div>
 
+    <x-new-project-modal></x-new-project-modal>
+
 
 
 </x-app-layout>
