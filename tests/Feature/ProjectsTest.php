@@ -32,6 +32,23 @@ class ProjectsTest extends TestCase
             ->assertSee($attributes['title'])
             ->assertSee($attributes['description']);
     }
+    /** @test */
+    public function tasks_can_be_included_as_part_of_a_new_project_creation(): void
+    {
+        $this->signIn();
+
+        $attributes = Project::factory()->raw();
+
+        $attributes['tasks'] = [
+            ['body' => 'task 1'],
+            ['body' => 'task 2']
+        ];
+
+        $this->post('/projects', $attributes);
+
+
+        $this->assertCount(2, Project::first()->tasks);
+    }
 
     /** @test */
     public function a_user_can_see_all_projects_they_have_been_invited_to_on_their_dashboard()
