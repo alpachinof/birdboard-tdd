@@ -10,10 +10,9 @@
 
             <div class="flex items-center">
                 @foreach ($project->members as $member)
-                    <img src="sdad" alt="" class="rounded-full w-8 mr-2">
+                    <img src="{{ asset('avatar.png') }}" alt="" class="rounded-full w-8 mr-2">
                 @endforeach
-                <img src="https://fastly.picsum.photos/id/218/200/200.jpg?hmac=pIx-HTJBJRheNaHmhgqsQRX8JbTGvag_zic9NTNWFJU"
-                    alt="" class="rounded-full w-8 mr-2">
+                <img src="{{ asset('avatar.png') }}" alt="" class="rounded-full w-8 mr-2">
 
                 <a href="{{ $project->path() . '/edit' }}" class="button ml-4 dark:text-white">Edit Project</a>
 
@@ -32,10 +31,14 @@
                             @method('patch')
                             @csrf
 
-                            <div class="flex">
-                                <input class="w-full {{ $task->completed ? 'text-gray-400' : '' }}" name="body"
-                                    value="{{ $task->body }}">
-                                <input name="completed" type="checkbox" onchange="this.form.submit()"
+                            <div class="flex items-center">
+                                <x-text-input name="body"
+                                    class="w-full {{ $task->completed ? 'text-gray-400' : '' }}"
+                                    value="{{ $task->body }}" />
+
+                                <input
+                                    class="ml-4 w-6 h-6 focus:ring-indigo-500 text-indigo-600 border-gray-300 rounded dark:bg-gray-900 dark:border-gray-600"
+                                    name="completed" type="checkbox" onchange="this.form.submit()"
                                     {{ $task->completed ? 'checked' : '' }}>
                             </div>
                         </form>
@@ -46,7 +49,7 @@
                 <div class="card mb-3">
                     <form action="{{ $project->path() . '/tasks' }}" method="post">
                         @csrf
-                        <input placeholder="add tasks" class="w-full" name="body">
+                        <x-text-input placeholder="add tasks" name="body" class="w-full" />
                     </form>
                 </div>
             </div>
@@ -57,7 +60,7 @@
                 <form method="post" action="{{ $project->path() }}">
                     @method('patch')
                     @csrf
-                    <textarea name="notes" class="card w-full mb-4" style="min-height: 200px">{{ $project->notes }}</textarea>
+                    <textarea name="notes" class="card w-full mb-4 " style="min-height: 200px">{{ $project->notes }}</textarea>
                     <button type="submit" class="button">save</button>
                 </form>
             </div>

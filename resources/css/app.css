@@ -7,5 +7,5 @@
 }
 
 .button {
-    @apply bg-[#4CA3EA] text-white no-underline rounded-lg text-sm py-2 px-5;
+    @apply bg-indigo-600 text-white no-underline rounded-lg text-sm py-2 px-5;
 }
