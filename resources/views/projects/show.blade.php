@@ -1,5 +1,5 @@
 <x-app-layout>
-    <header class="flex items-center mb-3 py-4">
+    <header class="flex items-center mb-3 py-4 max-w-7xl mx-auto">
         <div class="flex justify-between items-end w-full">
             <p class="text-gray text-sm font-normal dark:text-white">
                 <a href="/projects" class="text-gray text-sm font-normal no_underline dark:text-white">
@@ -20,8 +20,8 @@
         </div>
     </header>
 
-    <div class="lg:flex -mx-3 dark:text-white">
-        <div class="lg:w-3/4 px-3 mb-6">
+    <div class="lg:flex gap-4 dark:text-white max-w-7xl mx-auto">
+        <div class="lg:w-3/4  mb-6">
             <div class="mb-8">
                 <h2 class="text-lg text-gray font-normal mb-3">Tasks</h2>
 
@@ -37,7 +37,7 @@
                                     value="{{ $task->body }}" />
 
                                 <input
-                                    class="ml-4 w-6 h-6 focus:ring-indigo-500 text-indigo-600 border-gray-300 rounded dark:bg-gray-900 dark:border-gray-600"
+                                    class="ml-4 w-6 h-6 focus:ring-indigo-500 text-indigo-600 border-gray-300 rounded dark:border-gray-600"
                                     name="completed" type="checkbox" onchange="this.form.submit()"
                                     {{ $task->completed ? 'checked' : '' }}>
                             </div>
@@ -67,7 +67,7 @@
         </div>
 
 
-        <div class="lg:w-1/4 px-3">
+        <div class="lg:w-1/4">
             @include('projects.card')
 
             @include('projects.activity.card')

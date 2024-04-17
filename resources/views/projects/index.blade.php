@@ -17,7 +17,7 @@
         </div>
     </x-slot>
 
-    <div class="lg:flex lg:flex-wrap -mx-3">
+    <div class="lg:flex lg:flex-wrap -mx-3 max-w-7xl mx-auto">
 
         @foreach ($projects as $project)
             <div class="lg:w-1/3 px-3 pb-6">

@@ -28,7 +28,7 @@
                         <template x-for="task in form.tasks">
                             {{-- <input type="text" x-model="task.body"
                                 class="border border-muted-light mb-2 p-2 text-xs block w-full rounded dark:text-gray-800"> --}}
-                            <x-text-input x-model="task.body" class="block w-full" />
+                            <x-text-input x-model="task.body" class="block w-full mb-2" />
 
                         </template>
                     </div>
@@ -57,7 +57,7 @@
                 title: '',
                 description: '',
                 tasks: [{
-                    body: 'fdfd'
+                    body: ''
                 }],
             },
             errors: [],
