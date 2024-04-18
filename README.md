@@ -3,10 +3,10 @@
 ## screenshots
 welcome page
 
-![welcome](public//screenshot.png)
+![welcome](public//screenshot1.png)
 dashboard page
 
-![dasboard](public//screenshot1.png)
+![dasboard](public//screenshot.png)
 new project
 
 ![new project](public//screenshot4.png)
