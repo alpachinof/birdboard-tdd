@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>BirdBoard</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -15,7 +15,7 @@
 
 </head>
 
-<body class="dark" class="font-sans antialiased dark:bg-blue-900 dark:text-white/50">
+<body class="font-sans antialiased dark:bg-blue-900 dark:text-white/50">
     <div class="bg-gray-50 text-black/50 dark:bg-slate-900 dark:text-white/50">
 
         <div
@@ -54,8 +54,8 @@
                         <a href="/register" id="docs-card"
                             class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-gray-950 dark:ring-gray-800 dark:hover:text-white/70 dark:hover:ring-gray-700 dark:focus-visible:ring-[#FF2D20]">
                             <div id="screenshot-container" class="relative flex w-full flex-1 items-stretch">
-                                <img src="https://laravel.com/assets/img/welcome/docs-light.svg"
-                                    class="aspect-video h-full w-full flex-1 rounded-[10px] object-top object-cover drop-shadow-[0px_4px_34px_rgba(0,0,0,0.06)] dark:hidden"
+                                <img src="{{ asset('screenshot.png') }}"
+                                    class="aspect-video h-full w-full flex-1 rounded-[10px] object-top object-contain drop-shadow-[0px_4px_34px_rgba(0,0,0,0.06)] dark:hidden"
                                     onerror="
                                             document.getElementById('screenshot-container').classList.add('!hidden');
                                             document.getElementById('docs-card').classList.add('!row-span-1');
@@ -127,9 +127,7 @@
                                 <h2 class="text-xl font-semibold text-black dark:text-white">Activity record</h2>
 
                                 <p class="mt-4 text-sm/relaxed">
-                                    Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript
-                                    development. Check them out, see for yourself, and massively level up your
-                                    development skills in the process.
+                                    Have a history of activities all in one place to manage everyone's work.
                                 </p>
                             </div>
 
@@ -156,9 +154,8 @@
                                 <h2 class="text-xl font-semibold text-black dark:text-white">Collaboration</h2>
 
                                 <p class="mt-4 text-sm/relaxed">
-                                    Laravel News is a community driven portal and newsletter aggregating all of the
-                                    latest and most important news in the Laravel ecosystem, including new package
-                                    releases and tutorials.
+                                    Invite people and friends to visit and collaborate on your project.
+
                                 </p>
                             </div>
 
@@ -182,7 +179,7 @@
                                 <h2 class="text-xl font-semibold text-black dark:text-white">Unlimited projects</h2>
 
                                 <p class="mt-4 text-sm/relaxed">
-                                    Laravel's robust library of first-party tools and libraries,
+                                    Create as many projects as you like.no limitations.
                                 </p>
                             </div>
                         </div>
